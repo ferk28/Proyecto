@@ -5,10 +5,6 @@
  */
 package controllers;
 
-/**
- *
- * @author fernando
- */
-public class ControllerUsuarios {
+public class ControllerUsuarios{
     
 }

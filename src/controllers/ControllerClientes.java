@@ -1,43 +1,42 @@
 package controllers;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
 import views.ViewClientes;
 import models.ModelClientes;
-import views.ViewMain;
 import models.ModelMain;
 /**
  *
  * @author fernando
  */
-public final class ControllerClientes {
+public final class ControllerClientes implements FocusListener {
     private final ModelClientes model_clientes;
-    private final ViewMain view_main;        
     private final ViewClientes view_clientes;  
-    private final ControllerMain controller_main;
     private final ModelMain model_main;
     
-    public ControllerClientes(Object models[], Object views[], Object controllers[]){
-        this.model_clientes = (ModelClientes)models[1];
-        this.view_main = (ViewMain)views[0];                
-        this.view_clientes = (ViewClientes)views[1];
-        this.controller_main = (ControllerMain)controllers[0];
+    
+    public ControllerClientes( Object views[], Object models[], Object controllers[]){
+        this.model_clientes = (ModelClientes)models[2];
+        this.view_clientes = (ViewClientes)views[2];
         this.model_main = (ModelMain)models[0];
 
         initView();
         }
     public void initView(){
-        
+        view_clientes.addFocusListener(this);
         view_clientes.jbtn_primero.addActionListener(e-> jbtn_primero_click());
         view_clientes.jbtn_ultimo.addActionListener(e-> jbtn_ultimo_click());
-        view_clientes.jbtn_siguiente.addActionListener(e-> jbtn_siguiente_click());
-        view_clientes.jbtn_anterior.addActionListener(e-> jbtn_anterior_click());
         view_clientes.jbtn_agregar.addActionListener(e-> jbtn_agregar_click());
         view_clientes.jbtn_editar.addActionListener(e-> jbtn_editar_click());
         view_clientes.jbtn_eliminar.addActionListener(e-> jbtn_eliminar_click());
         view_clientes.jbtn_nuevo.addActionListener(e-> jbtn_nuevo_click());         
-        
+        view_clientes.jbtn_siguiente.addActionListener(e-> jbtn_siguiente_click());
+        view_clientes.jbtn_anterior.addActionListener(e-> jbtn_anterior_click());
+        view_clientes.jbtn_buscar.addActionListener(e-> jbtn_buscar_click());
         view_clientes.jbtn_agregar.setEnabled(false);
         view_clientes.jtf_id_cliente.setEditable(false);
+        model_clientes.llenarActualizarDatos();
         
         getValores();
         botones();
@@ -45,29 +44,27 @@ public final class ControllerClientes {
     public void getValores(){
         view_clientes.jtf_id_cliente.setText("" + model_clientes.getId_cliente());
         view_clientes.jtf_nombre.setText(model_clientes.getNombre());
-        view_clientes.jtf_genero.setText(model_clientes.getGenero());
+        view_clientes.jcb_genero.setSelectedItem(model_clientes.getGenero());
         view_clientes.jtf_telefono.setText(model_clientes.getTelefono());
-        view_clientes.jtf_telefono2.setText(model_clientes.getTelefono2());
-        
-//        view_clientes.jt_clientes.setModel(model_clientes.getTabla_clientes());        
+        view_clientes.jtf_telefono2.setText(model_clientes.getTelefono2());   
+        view_clientes.jt_clientes.setModel(model_clientes.getTabla_clientes());
     }
     public void setValores(){
         model_clientes.setId_cliente(Integer.parseInt(view_clientes.jtf_id_cliente.getText()));
         model_clientes.setNombre(view_clientes.jtf_nombre.getText());
-        model_clientes.setGenero(view_clientes.jtf_genero.getText());
         model_clientes.setTelefono(view_clientes.jtf_telefono.getText());
         model_clientes.setTelefono2(view_clientes.jtf_telefono2.getText());
-
+        model_clientes.setBuscar(view_clientes.jtf_buscar.getText());        
     }    
+    
     public void ActualizarInterfaz(){
-        model_clientes.llenarDatos();
+        model_clientes.llenarActualizarDatos();
         getValores();
     }
     public void jbtn_nuevo_click(){
         agregar_true();
         view_clientes.jtf_id_cliente.setText("0");
         view_clientes.jtf_nombre.setText("");
-        view_clientes.jtf_genero.setText("");
         view_clientes.jtf_telefono.setText("");
         view_clientes.jtf_telefono2.setText("");
     }
@@ -96,6 +93,20 @@ public final class ControllerClientes {
         model_clientes.borrar();
         ActualizarInterfaz();
     }
+        
+    /*****************************BUSCAR**********************************************/
+    public void getValorBuscar(){
+        view_clientes.jtf_buscar.setText(model_clientes.getBuscar());           
+    }
+    public void setValorBuscar(){
+        model_clientes.setBuscar(view_clientes.jtf_buscar.getText());        
+    }
+    public void jbtn_buscar_click(){
+        getValorBuscar();
+        model_clientes.buscar_jtable();
+        setValorBuscar();
+    }
+    /******************************BOTONES NAVEGACION****************************/
     public void jbtn_primero_click(){
         model_main.Mover_Primero();
         model_clientes.AsignarDatos();
@@ -121,6 +132,22 @@ public final class ControllerClientes {
         agregar_falso();
     }
     
+    @Override
+    public void focusGained(FocusEvent e) {
+        model_clientes.llenarActualizarDatos();
+        getValores();
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        
+    }
+    
+    
+    
+    
+        
+    /***********************************BOTONES ESTILO************************************************/
     public void agregar_falso(){
         view_clientes.jbtn_agregar.setEnabled(false);
         view_clientes.jbtn_editar.setEnabled(true);
@@ -165,5 +192,5 @@ public final class ControllerClientes {
         view_clientes.jbtn_ultimo.setBorderPainted(false);
         
     }
-        
+
 }

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package models;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,6 +23,26 @@ public class ModelMain {
     private PreparedStatement ps;
     private ResultSet   rs;
     private String      sql;
+
+    private MessageDigest md5;
+    private StringBuilder string_builder;
+    
+
+    public MessageDigest getMd5() {
+        return md5;
+    }
+
+    public void setMd5(MessageDigest md5) {
+        this.md5 = md5;
+    }
+
+    public StringBuilder getString_builder() {
+        return string_builder;
+    }
+
+    public void setString_builder(StringBuilder string_builder) {
+        this.string_builder = string_builder;
+    }
     
     public Connection getConexion() {
         return conexion;
@@ -69,17 +91,27 @@ public class ModelMain {
         try{
             Conectar();
             rs = st.executeQuery(sql);
-            conexion.close();
+            //conexion.close();
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al ejecutar consulta: " +  e);
         }
     }
     
+    public void Ejecutar_Consulta_PS() {
+        try {
+            rs = ps.executeQuery();
+            //sql_connection.close();
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar consulta: " + e);
+        }
+    }
+    
     public void Ejecutar_Actualizacion(){
         try{
             ps.executeUpdate();
-            conexion.close();
+            //conexion.close();
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al ejecutar actualización: " + e);
@@ -90,7 +122,7 @@ public class ModelMain {
         try{
             Conectar();
             st.execute(sql);
-            conexion.close();
+            //conexion.close();
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "nel carnal" + e);
@@ -161,5 +193,21 @@ public class ModelMain {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al mover el cursor al último registro: " + e);
         }
-    }    
+    }
+    public String Cifrar(String texto, String tipo_cifrado){
+        try{
+            md5 = MessageDigest.getInstance(tipo_cifrado);
+            byte[] auxiliar_cifrado = md5.digest(texto.getBytes());
+            string_builder = new StringBuilder();
+            for(int x = 0; x < auxiliar_cifrado.length; x ++){
+                string_builder.append(Integer.toHexString((auxiliar_cifrado[x] & 0xFF) | 0x100).substring(1,3));
+            }
+            return string_builder.toString();
+        }
+        catch(NoSuchAlgorithmException e){
+            JOptionPane.showMessageDialog(null, "Error al cifrar la información" + e);
+        }
+        return "";
+    }
+    
 }

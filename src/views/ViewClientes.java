@@ -34,7 +34,6 @@ public class ViewClientes extends javax.swing.JPanel {
         jt_clientes = new javax.swing.JTable();
         jtf_id_cliente = new javax.swing.JTextField();
         jtf_nombre = new javax.swing.JTextField();
-        jtf_genero = new javax.swing.JTextField();
         j_telefono = new javax.swing.JLabel();
         jtf_telefono = new javax.swing.JTextField();
         jbtn_nuevo = new javax.swing.JButton();
@@ -48,6 +47,10 @@ public class ViewClientes extends javax.swing.JPanel {
         jtf_telefono2 = new javax.swing.JTextField();
         jbtn_primero = new javax.swing.JButton();
         jbtn_salir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jcb_genero = new javax.swing.JComboBox<>();
+        jtf_buscar = new javax.swing.JTextField();
+        jbtn_buscar = new javax.swing.JButton();
 
         jl_nombre.setText("Nombre");
 
@@ -96,6 +99,12 @@ public class ViewClientes extends javax.swing.JPanel {
 
         jbtn_salir.setText("Salir");
 
+        jLabel1.setText("Nombre");
+
+        jcb_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+
+        jbtn_buscar.setText("Buscar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,11 +114,6 @@ public class ViewClientes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jl_genero)
-                                .addGap(41, 41, 41)
-                                .addComponent(jtf_genero, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(j_telefono)
                                 .addGap(41, 41, 41)
@@ -121,7 +125,15 @@ public class ViewClientes extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jl_telefono2)
                                 .addGap(41, 41, 41)
-                                .addComponent(jtf_telefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtf_telefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jl_genero))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcb_genero, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,19 +154,22 @@ public class ViewClientes extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbtn_primero)
-                                .addGap(39, 39, 39)
-                                .addComponent(jbtn_anterior)
-                                .addGap(70, 70, 70)
-                                .addComponent(jbtn_siguiente)
-                                .addGap(38, 38, 38)
-                                .addComponent(jbtn_ultimo)
-                                .addGap(302, 302, 302))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbtn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45))))))
+                        .addComponent(jbtn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jtf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(jbtn_buscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtn_primero)
+                .addGap(39, 39, 39)
+                .addComponent(jbtn_anterior)
+                .addGap(70, 70, 70)
+                .addComponent(jbtn_siguiente)
+                .addGap(38, 38, 38)
+                .addComponent(jbtn_ultimo)
+                .addGap(302, 302, 302))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,20 +200,27 @@ public class ViewClientes extends javax.swing.JPanel {
                     .addComponent(jl_id_cliente)
                     .addComponent(jtf_id_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(92, 92, 92)
-                .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_genero)
-                    .addComponent(jtf_genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(j_telefono)
-                    .addComponent(jtf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_telefono2)
-                    .addComponent(jtf_telefono2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(153, 153, 153))
+                    .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jl_genero)
+                            .addComponent(jcb_genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j_telefono)
+                            .addComponent(jtf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(83, 83, 83)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jl_telefono2)
+                            .addComponent(jtf_telefono2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(100, 100, 100)
+                        .addComponent(jtf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtn_buscar))
+                .addGap(34, 34, 34))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,10 +230,12 @@ public class ViewClientes extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JLabel j_telefono;
     public javax.swing.JButton jbtn_agregar;
     public javax.swing.JButton jbtn_anterior;
+    public javax.swing.JButton jbtn_buscar;
     public javax.swing.JButton jbtn_editar;
     public javax.swing.JButton jbtn_eliminar;
     public javax.swing.JButton jbtn_nuevo;
@@ -219,12 +243,13 @@ public class ViewClientes extends javax.swing.JPanel {
     public javax.swing.JButton jbtn_salir;
     public javax.swing.JButton jbtn_siguiente;
     public javax.swing.JButton jbtn_ultimo;
+    public javax.swing.JComboBox<String> jcb_genero;
     public javax.swing.JLabel jl_genero;
     public javax.swing.JLabel jl_id_cliente;
     public javax.swing.JLabel jl_nombre;
     public javax.swing.JLabel jl_telefono2;
     public javax.swing.JTable jt_clientes;
-    public javax.swing.JTextField jtf_genero;
+    public javax.swing.JTextField jtf_buscar;
     public javax.swing.JTextField jtf_id_cliente;
     public javax.swing.JTextField jtf_nombre;
     public javax.swing.JTextField jtf_telefono;

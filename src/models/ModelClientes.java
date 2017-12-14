@@ -16,20 +16,28 @@ import javax.swing.table.TableModel;
 
 public class ModelClientes {
     private final ModelMain model_main;        
+
+    public ModelClientes(ModelMain model_main){
+        this.model_main = model_main;
+    }
     
     private String sql; 
-
+    
     private int id_cliente;
     private String nombre;
     private String genero;
     private String telefono;
     private String telefono2;
     private TableModel tabla_clientes;
-    
-    public ModelClientes(ModelMain model_main){
-        this.model_main = model_main;
+    private String buscar;
+        
+    public void setBuscar(String buscar) {
+        this.buscar = buscar;
     }
-   
+
+    public String getBuscar() {
+        return buscar;
+    }
 
     public void setSql(String sql) {
         this.sql = sql;
@@ -80,18 +88,27 @@ public class ModelClientes {
             telefono2 = model_main.getRs().getString("telefono2");
             
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "error 102" + e);
+            JOptionPane.showMessageDialog(null, "error 102.2" + e);
         }
     }    
    
-    public void llenarDatos(){
+    public void llenarActualizarDatos(){
         model_main.setSql("SELECT * FROM clientes;");
         model_main.Ejecutar_Consulta();
+        tabla_clientes = DbUtils.resultSetToTableModel(model_main.getRs());
         model_main.Mover_Primero();
-//        tabla_clientes = DbUtils.resultSetToTableModel(model_main.getRs());
         AsignarDatos();
 
-}
+    }
+    public void buscar_jtable(){
+
+        model_main.setSql("SELECT * FROM clientes WHERE nombre LIKE ('%"+buscar+"%') OR genero LIKE ('%"+buscar+"%') OR telefono LIKE ('%"+buscar+"%') OR telefono2 LIKE ('%"+buscar+"%');");       
+        model_main.Ejecutar_Consulta();
+        tabla_clientes = DbUtils.resultSetToTableModel(model_main.getRs());
+        model_main.Mover_Primero();
+        AsignarDatos();
+        System.out.println("buscar jtable");
+    }    
 
     public void insertar(){
         try{
@@ -132,6 +149,6 @@ public class ModelClientes {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"error 110" + e);
         }
-    }   
+    }
     
 }

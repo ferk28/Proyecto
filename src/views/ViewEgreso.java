@@ -18,7 +18,7 @@ public class ViewEgreso extends javax.swing.JPanel {
      */
     public ViewEgreso() {
         initComponents();
-        jsp_fecha.setEditor(new JSpinner.DateEditor(jsp_fecha, "YYYY-MM-DD"));
+//        jsp_fecha.setEditor(new JSpinner.DateEditor(jsp_fecha, "YYYY-MM-DD"));
 
     }
 
@@ -39,7 +39,6 @@ public class ViewEgreso extends javax.swing.JPanel {
         jtf_monto = new javax.swing.JTextField();
         jtf_cantidad = new javax.swing.JTextField();
         jtf_id_egreso = new javax.swing.JTextField();
-        jsp_fecha = new javax.swing.JSpinner();
         jcb_tipo_egreso = new javax.swing.JComboBox<>();
         jbtn_agregar_egreso = new javax.swing.JButton();
         jbtn_primero = new javax.swing.JButton();
@@ -51,7 +50,8 @@ public class ViewEgreso extends javax.swing.JPanel {
         jbtn_agregar = new javax.swing.JButton();
         jbtn_eliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jt_table = new javax.swing.JTable();
+        jtf_fecha = new javax.swing.JTextField();
 
         jl_id_egreso.setText("ID Egreso");
 
@@ -63,7 +63,7 @@ public class ViewEgreso extends javax.swing.JPanel {
 
         jl_tipo_de_egreso.setText("Tipo de Egreso");
 
-        jcb_tipo_egreso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcb_tipo_egreso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         jbtn_primero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espalda (1).png"))); // NOI18N
 
@@ -81,7 +81,7 @@ public class ViewEgreso extends javax.swing.JPanel {
 
         jbtn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jt_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -92,7 +92,7 @@ public class ViewEgreso extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jt_table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,21 +103,22 @@ public class ViewEgreso extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jl_monto)
-                                        .addComponent(jl_cantidad)
-                                        .addComponent(jl_id_egreso))
-                                    .addGap(91, 91, 91)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jtf_id_egreso, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                                        .addComponent(jtf_monto)
-                                        .addComponent(jtf_cantidad)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jl_fecha)
-                                    .addGap(114, 114, 114)
-                                    .addComponent(jsp_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jl_monto)
+                                            .addComponent(jl_cantidad)
+                                            .addComponent(jl_id_egreso))
+                                        .addGap(91, 91, 91))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jl_fecha)
+                                        .addGap(116, 116, 116)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtf_id_egreso, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                    .addComponent(jtf_monto)
+                                    .addComponent(jtf_cantidad)
+                                    .addComponent(jtf_fecha)))
                             .addComponent(jcb_tipo_egreso, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
@@ -142,7 +143,7 @@ public class ViewEgreso extends javax.swing.JPanel {
                 .addComponent(jbtn_siguiente)
                 .addGap(60, 60, 60)
                 .addComponent(jbtn_ultimo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,9 +179,9 @@ public class ViewEgreso extends javax.swing.JPanel {
                                 .addGap(82, 82, 82)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jsp_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jl_fecha))
-                        .addGap(60, 60, 60)
+                            .addComponent(jl_fecha)
+                            .addComponent(jtf_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
                         .addComponent(jl_tipo_de_egreso)
                         .addGap(18, 18, 18)
                         .addComponent(jcb_tipo_egreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +193,7 @@ public class ViewEgreso extends javax.swing.JPanel {
                             .addComponent(jbtn_anterior)
                             .addComponent(jbtn_siguiente)
                             .addComponent(jbtn_ultimo))
-                        .addGap(40, 40, 40))
+                        .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtn_agregar_egreso)
                         .addGap(67, 67, 67))))
@@ -202,7 +203,6 @@ public class ViewEgreso extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable jTable2;
     public javax.swing.JButton jbtn_agregar;
     public javax.swing.JButton jbtn_agregar_egreso;
     public javax.swing.JButton jbtn_anterior;
@@ -218,8 +218,9 @@ public class ViewEgreso extends javax.swing.JPanel {
     public javax.swing.JLabel jl_id_egreso;
     public javax.swing.JLabel jl_monto;
     public javax.swing.JLabel jl_tipo_de_egreso;
-    public javax.swing.JSpinner jsp_fecha;
+    public javax.swing.JTable jt_table;
     public javax.swing.JTextField jtf_cantidad;
+    public javax.swing.JTextField jtf_fecha;
     public javax.swing.JTextField jtf_id_egreso;
     public javax.swing.JTextField jtf_monto;
     // End of variables declaration//GEN-END:variables

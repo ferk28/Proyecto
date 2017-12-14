@@ -30,8 +30,13 @@ public class ViewMain extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jm_iniciar_sesion = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
         ferk = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jm_archivo = new javax.swing.JMenu();
+        jmi_iniciar_sesion = new javax.swing.JMenuItem();
         jm_menu = new javax.swing.JMenu();
         jmi_clientes = new javax.swing.JMenuItem();
         jmi_usuarios = new javax.swing.JMenuItem();
@@ -54,9 +59,22 @@ public class ViewMain extends javax.swing.JFrame {
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
 
+        jm_iniciar_sesion.setText("jMenu1");
+
+        jMenu2.setText("jMenu2");
+
+        jMenu6.setText("jMenu6");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ferk.setText("@ferk");
+
+        jm_archivo.setText("Archivo");
+
+        jmi_iniciar_sesion.setText("Iniciar Sesión");
+        jm_archivo.add(jmi_iniciar_sesion);
+
+        jMenuBar1.add(jm_archivo);
 
         jm_menu.setText("Menú");
         jm_menu.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
@@ -179,11 +197,15 @@ public class ViewMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel ferk;
+    public javax.swing.JMenu jMenu2;
     public javax.swing.JMenu jMenu3;
     public javax.swing.JMenu jMenu4;
+    public javax.swing.JMenu jMenu6;
     public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenuBar jMenuBar2;
+    public javax.swing.JMenu jm_archivo;
     public javax.swing.JMenu jm_efectivo;
+    public javax.swing.JMenu jm_iniciar_sesion;
     public javax.swing.JMenu jm_menu;
     public javax.swing.JMenu jm_salir;
     public javax.swing.JMenu jm_sistema;
@@ -194,6 +216,7 @@ public class ViewMain extends javax.swing.JFrame {
     public javax.swing.JMenu jmi_egreso;
     public javax.swing.JMenuItem jmi_empleados;
     public javax.swing.JMenuItem jmi_ingresos;
+    public javax.swing.JMenuItem jmi_iniciar_sesion;
     public javax.swing.JMenuItem jmi_inventario;
     public javax.swing.JMenuItem jmi_reservaciones;
     public javax.swing.JMenuItem jmi_servicios;
